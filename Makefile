@@ -2,16 +2,16 @@ NAME := libasm.a
 
 TESTER_NAME := libasm_tester.c
 
-SRCS := ft_strlen.s
+SRCS := ft_strlen.s ft_strcpy.s
 
 OBJS := $(SRCS:.s=.o)
 
 AS := nasm
 ASFLAGS := -f elf64
 
-CC := gcc
+CC := clang
 
-CFLAGS := -no-pie -Wall -Werror -Wextra
+CFLAGS :=  -Wall -Werror -Wextra
 
 all: $(NAME)
 
@@ -23,12 +23,12 @@ $(NAME): $(OBJS)
 %.o: %.s
 	$(AS) $(ASFLAGS) $<
 
-tester: all
-	$(CC) $(CFLAGS) $(NAME) $(TESTER_NAME) -o $@
+tester: all $(TESTER_NAME)
+	$(CC) $(CFLAGS)  $(TESTER_NAME) -o $@ -L. -lasm -L. -lasm
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf tester.o
+	rm -rf libasm_tester.o
 
 fclean: clean
 	rm -rf $(NAME)
@@ -36,5 +36,11 @@ fclean: clean
 
 re:	clean
 	$(MAKE) all
+
+test:	tester
+		./tester
+
+vtest:	tester
+		valgrind ./tester
 
 .PHONY: all, clean, fclean, re

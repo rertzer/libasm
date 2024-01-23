@@ -3,13 +3,14 @@ section .data
 section .text
 	global ft_strlen
 
+	;parameter const char *s in register rdi
 ft_strlen:
-	;parametres const char *s in register rdi
-	mov	rax, 0
+	xor	rax, rax
+	xor rdx, rdx
 looping:
-	cmp byte [rdi + rax], 0
+	cmp [rdi + rax], rdx
 	je end_found
-	add rax, 1
+	inc rax
 	jmp looping
 end_found:
 	ret
