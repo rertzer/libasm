@@ -2,16 +2,18 @@ NAME := libasm.a
 
 TESTER_NAME := libasm_tester.c
 
-SRCS := ft_strlen.s ft_strcpy.s
+SRCS := ft_strlen.s \
+		ft_strcpy.s \
+		ft_strcmp.s
 
 OBJS := $(SRCS:.s=.o)
 
 AS := nasm
-ASFLAGS := -f elf64
+ASFLAGS := -f elf64 -g
 
 CC := clang
 
-CFLAGS :=  -Wall -Werror -Wextra
+CFLAGS :=  -Wall -Werror -Wextra -g3
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:59:17 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/24 10:18:50 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/24 16:06:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 extern size_t	ft_strlen(const char *s);
 extern char		*ft_strcpy(char *dest, const char *src);
+extern int		ft_strcmp(const char *s1, const char * s2);
 
 
 void	li_compare(long int std, long int ft)
@@ -89,12 +90,32 @@ int	strcpy_tester(const char *s)
 	return (0);
 }
 
+void	strcmp_tester(const char *s1, const char *s2)
+{
+	long int	len = strlen(s1);
+	printf("Testing ft_strcmp\n");
+	if (len < 1024)
+		printf("%s\n", s1);
+	else
+		printf("(s1 len: %ld)\n", len);
+
+	len = strlen(s2);
+	if (len < 1024)
+		printf("%s\n", s2);
+	else
+		printf("(s2 len: %ld)\n", len);
+	int	std = strcmp(s1, s2);
+	int	ft = ft_strcmp(s1, s2);
+	li_compare(std, ft);
+}
+
+
 int	main()
 {
 	char	test_string_1[] = "coucou";
 	char	test_string_2[] = "";
 	char	test_string_3[] = "Loin des oiseaux, des troupeaux, des villageoises,\nJe buvais a genoux dans quelque bruyere\nEntouree de tendres bois de noisetiers,\nPar un brouillard d'apres-midi tiede et vert.\n";
-
+	char	test_string_4[] = "coukou";
 	char	*test_string_bigA = malloc(BIG_SIZE + 1);
 	if (test_string_bigA == NULL)
 	{
@@ -122,6 +143,15 @@ int	main()
 	if (strcpy_tester(test_string_bigA))
 		return 1;
 	
+	printf("\033[0;33m       ==================== STRCMP =====================\033[0m\n");
+	
+	strcmp_tester(test_string_1, test_string_1);
+	strcmp_tester(test_string_1, test_string_2);
+	strcmp_tester(test_string_3, test_string_1);
+	strcmp_tester(test_string_1, test_string_4);
+	strcmp_tester(test_string_bigA, test_string_bigA);
+	strcmp_tester(test_string_bigA, test_string_1);
+
 	free(test_string_bigA);
 	return 0;
 }
