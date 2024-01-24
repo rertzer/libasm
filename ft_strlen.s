@@ -6,11 +6,11 @@ section .text
 	;parameter const char *s in register rdi
 ft_strlen:
 	xor	rax, rax
-	xor rdx, rdx
 looping:
-	cmp [rdi + rax], rdx
+	cmp byte [rdi], 0
 	je end_found
 	inc rax
+	inc rdi
 	jmp looping
 end_found:
 	ret
