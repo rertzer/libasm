@@ -6,13 +6,15 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:59:17 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/24 16:06:15 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/25 11:29:56 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <errno.h>
 
 
 #define	BIG_SIZE 42 * 4096 - 7
@@ -20,6 +22,7 @@
 extern size_t	ft_strlen(const char *s);
 extern char		*ft_strcpy(char *dest, const char *src);
 extern int		ft_strcmp(const char *s1, const char * s2);
+extern ssize_t	ft_write(int fd, const char *buf, size_t count);
 
 
 void	li_compare(long int std, long int ft)
@@ -109,6 +112,21 @@ void	strcmp_tester(const char *s1, const char *s2)
 	li_compare(std, ft);
 }
 
+void	write_tester(int fd, const char *s1)
+{
+	long int	len = strlen(s1);
+	printf("Testing ft_write\n");
+
+	printf("std:\n");
+	errno = 0;
+	long int ret = write(fd, s1, len);
+	printf("\nstd return value: %ld\nstd errno: %d\n", ret, errno);
+
+	printf("\nft:\n");
+	errno = 0;
+	ret = ft_write(fd, s1, len);
+	printf("\nft return value: %ld\nft errno: %d\n\n", ret, errno);
+}
 
 int	main()
 {
@@ -151,6 +169,15 @@ int	main()
 	strcmp_tester(test_string_1, test_string_4);
 	strcmp_tester(test_string_bigA, test_string_bigA);
 	strcmp_tester(test_string_bigA, test_string_1);
+
+
+	printf("\033[0;33m       ==================== WRITE =====================\033[0m\n");
+	write_tester(1, test_string_1);
+	write_tester(42, test_string_1);
+	write_tester(1, test_string_2);
+	write_tester(42, test_string_2);
+	write_tester(2, test_string_3);
+	write_tester(-3, test_string_3);
 
 	free(test_string_bigA);
 	return 0;
