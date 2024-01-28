@@ -23,10 +23,10 @@ ft_read:
 	ret
 
 _write_error:
-	neg rax					;switch error code to positive value
-	mov rdi, rax			;save error code
-	call __errno_location	;errno address put in rax
-	mov [rax], rdi			;put error code in errno
-	mov rax, -1				;return value -1
+	neg rax							;switch error code to positive value
+	mov rdi, rax					;save error code
+	call __errno_location wrt ..plt	;errno address put in rax
+	mov [rax], rdi					;put error code in errno
+	mov rax, -1						;return value -1
 	ret
 

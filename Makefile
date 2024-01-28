@@ -14,7 +14,7 @@ OBJS := $(SRCS:.s=.o)
 AS := nasm
 ASFLAGS := -f elf64 -g -F dwarf
 
-CC := clang
+CC := gcc 
 
 CFLAGS :=  -Wall -Werror -Wextra -g
 

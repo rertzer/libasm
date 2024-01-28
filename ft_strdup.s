@@ -20,15 +20,15 @@ _strlen_looping:
 	inc rdi
 	jmp _strlen_looping
 _strlen_found:
-	sub rdi, rsi		; src len = end - start
+	sub rdi, rsi			; src len = end - start
 
-	push rsi			; caller saved registers before call to malloc
+	push rsi				; caller saved registers before call to malloc
 	push rdi
 
 ;malloc
-	add rdi, 1			;we malloc size + 1 for the '\0'
-	call malloc
-	cmp rax, 0			;if return value null
+	add rdi, 1				;we malloc size + 1 for the '\0'
+	call malloc wrt ..plt
+	cmp rax, 0				;if return value null
 	je _write_error
 
 	pop rdi
@@ -47,16 +47,16 @@ _duploop:
 	loop _duploop
 
 _empty_string:
-	xor rdi, rdi				;adding the '\0'
+	xor rdi, rdi			;adding the '\0'
 	mov [rdx], rdi
 	ret
 
 ;errno
 _write_error:
-	neg rax					;switch error code to positive value
-	mov rdi, rax			;save error code
-	call __errno_location	;errno address put in rax
-	mov [rax], rdi			;put error code in errno
-	mov rax, -1				;return value -1
+	neg rax							;switch error code to positive value
+	mov rdi, rax					;save error code
+	call __errno_location wrt ..plt	;errno address put in rax
+	mov [rax], rdi					;put error code in errno
+	mov rax, -1						;return value -1
 	ret
 
