@@ -6,30 +6,15 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:59:17 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/25 17:09:00 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/29 11:07:04 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <errno.h>
-
-
-#define	BIG_SIZE 42000
-
-extern size_t	ft_strlen(const char *s);
-extern char		*ft_strcpy(char *dest, const char *src);
-extern int		ft_strcmp(const char *s1, const char * s2);
-extern ssize_t	ft_write(int fd, const char *buf, size_t count);
-extern ssize_t	ft_read(int fd, const void *buf, size_t count);
-extern char		*ft_strdup(const char *src);
-
+#include "libasm_tester.h"
 
 void	li_compare(long int std, long int ft)
 {
-	printf("stdlib: %ld\n", std);
+	printf("ref:    %ld\n", std);
 	printf("libasm: %ld\n", ft);
 
 	if (std != ft)
@@ -59,124 +44,27 @@ void	str_compare(const char *std, const char *ft)
 
 }
 
-void	strlen_tester(const char *s)
-{
-	printf("Testing ft_strlen\n");
-
-	long int	len_std = strlen(s);
-	long int	len_asm = ft_strlen(s);
-
-	if (len_std < 1024)
-		printf("%s\n", s);
-
-	li_compare(len_std, len_asm);
-}
-
-int	strcpy_tester(const char *s)
-{
-	printf("Testing ft_strcpy\n");
-	int	len = strlen(s);
-
-	char *dest_std = malloc(len + 1);
-	if (dest_std == NULL)
-	{
-		printf("\033[0;31mSorry, malloc failure\033[0m\n");
-		return (1);
-	}
-	char *dest_ft = malloc(len + 1);
-
-	if (dest_ft == NULL)
-	{
-		printf("\033[0;31mSorry, malloc failure\033[0m\n");
-		return (1);
-	}
-	dest_std = strcpy(dest_std, s);
-	dest_ft = ft_strcpy(dest_ft, s);
-	str_compare(dest_std, dest_ft);
-	free(dest_std);
-	free(dest_ft);
-	return (0);
-}
-
-void	strcmp_tester(const char *s1, const char *s2)
-{
-	long int	len = strlen(s1);
-	printf("Testing ft_strcmp\n");
-	if (len < 1024)
-		printf("%s\n", s1);
-	else
-		printf("(s1 len: %ld)\n", len);
-
-	len = strlen(s2);
-	if (len < 1024)
-		printf("%s\n", s2);
-	else
-		printf("(s2 len: %ld)\n", len);
-	int	std = strcmp(s1, s2);
-	int	ft = ft_strcmp(s1, s2);
-	li_compare(std, ft);
-}
-
-void	write_tester(int fd, const char *s1)
-{
-	long int	len = strlen(s1);
-	printf("Testing ft_write\n");
-
-	printf("std:\n");
-	errno = 0;
-	long int ret = write(fd, s1, len);
-	printf("\nstd return value: %ld\nstd errno: %d\n", ret, errno);
-
-	printf("\nft:\n");
-	errno = 0;
-	ret = ft_write(fd, s1, len);
-	printf("\nft return value: %ld\nft errno: %d\n\n", ret, errno);
-}
-
-void	read_tester(int fd, char *s1, const size_t len)
-{
-	printf("Testing read\n");
-	
-	printf("\nstd, your entry:\n");
-	bzero((void*)s1, len);
-	errno = 0;
-	long int ret = read(fd, s1, len);
-	printf("\nstd return value: %ld\nstd errno: %d\n", ret, errno);
-	printf("buffer contain: %s\n", s1);
-
-	printf("\nft, your entry:\n");
-	bzero((void*)s1, len);
-	errno = 0;
-	ret = ft_read(fd, s1, len);
-	printf("\nft return value: %ld\nft errno: %d\n\n", ret, errno);
-	printf("buffer contain: %s\n\n", s1);
-	bzero((void*)s1, len);
-}
-
-int	strdup_tester(const char *s)
-{
-	printf("Testing ft_strdup\n");
-
-	errno = 0;
-	char *dest_std = strdup(s);
-	printf("length: %lu\n", strlen(dest_std));
-	printf("errno after std strdup: %d\n\n", errno);
-	
-	errno = 0;
-	char *dest_ft = ft_strdup(s);
-	printf("errno after ft strdup: %d\n\n", errno);
-	str_compare(dest_std, dest_ft);
-	free(dest_std);
-	free(dest_ft);
-	return (0);
-}
-
 int	main()
 {
-	char	test_string_1[] = "coucou";
-	char	test_string_2[] = "";
-	char	test_string_3[] = "Loin des oiseaux, des troupeaux, des villageoises,\nJe buvais a genoux dans quelque bruyere\nEntouree de tendres bois de noisetiers,\nPar un brouillard d'apres-midi tiede et vert.\n";
-	//char	test_string_4[] = "coukou";
+	//char	test_string_1[] = "coucou";
+	//char	test_string_2[] = "";
+	char	atoi_string_1[] = "1234";
+	char	atoi_string_2[] = "9876543210";
+	char	atoi_string_3[] = "lapinnappllinap";
+	char	atoi_string_4[] = "1333666999";
+	char	atoi_string_5[] = "            555666777";
+	char	atoi_string_6[] = "-33";
+	char	atoi_string_7[] = "+abc";
+	char	atoi_string_8[] = " -++---42";
+	char	atoi_string_9[] = "10100001110101011110110010";
+	char	atoi_string_10[] = "007";
+	char	atoi_string_11[] = "0";
+	char	atoi_base_ten[] = "0123456789";
+	char	atoi_base_two[] = "01";
+	char	atoi_base_hex[] = "0123456789abcdef";
+	char	atoi_base_lapin[] = "lapin";
+	//char	test_string_3[] = "Loin des oiseaux, des troupeaux, des villageoises,\nJe buvais a genoux dans quelque bruyere\nEntouree de tendres bois de noisetiers,\nPar un brouillard d'apres-midi tiede et vert.\n";
+	/*char	test_string_4[] = "coukou";
 	char	*test_string_bigA = malloc(BIG_SIZE + 1);
 	if (test_string_bigA == NULL)
 	{
@@ -186,7 +74,7 @@ int	main()
 
 	for (int i = 0; i < BIG_SIZE; i++)
 		test_string_bigA[i] = 'A';
-	test_string_bigA[BIG_SIZE] = '\0';
+	test_string_bigA[BIG_SIZE] = '\0';*/
 /*
 	printf("\033[0;33m       ==================== STRLEN =====================\033[0m\n");
 	strlen_tester(test_string_1);
@@ -242,15 +130,32 @@ int	main()
 	read_tester(0, buffer, buffer_len);
 	printf("read on size 0 buffer\n");
 	read_tester(0, buffer, 0);
-*/
-//	printf("\033[0;33m       ==================== STRDUP ===================\033[0m\n");
+
+	printf("\033[0;33m       ==================== STRDUP ===================\033[0m\n");
 	strdup_tester(test_string_1);
 	strdup_tester(test_string_2);
 	strdup_tester(test_string_3);
 	strdup_tester(test_string_bigA);
+*/
 
-
-	free(test_string_bigA);
+	printf("\033[0;33m       ====================== BONUS =================\033[0m\n");
+	printf("\033[0;33m       ==================== ATOI BASE ===============\033[0m\n");
+	atoi_base_tester(atoi_string_1, atoi_base_ten);
+	printf("buffer overflow:\n");
+	atoi_base_tester(atoi_string_2, atoi_base_ten);
+	atoi_base_tester(atoi_string_4, atoi_base_ten);
+	atoi_base_tester(atoi_string_3, atoi_base_lapin);
+	atoi_base_tester(atoi_string_1, atoi_base_lapin);
+	atoi_base_tester(atoi_base_lapin, atoi_base_lapin);
+	atoi_base_tester(atoi_string_5, atoi_base_ten);
+	atoi_base_tester(atoi_string_6, atoi_base_ten);
+	atoi_base_tester(atoi_string_7, atoi_base_ten);
+	atoi_base_tester(atoi_string_8, atoi_base_ten);
+	atoi_base_tester(atoi_string_7, atoi_base_hex);
+	atoi_base_tester(atoi_string_9, atoi_base_two);
+	atoi_base_tester(atoi_string_10, atoi_base_ten);
+	atoi_base_tester(atoi_string_11, atoi_base_ten);
+//	free(test_string_bigA);
 //	free(buffer);
 	return 0;
 }

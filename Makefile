@@ -1,51 +1,56 @@
 NAME := libasm.a
 
-TESTER_NAME := libasm_tester.c
+TESTER_NAME := libasm_tester
+
+TESTER_DIR := tester/
+
+OBJ_DIR := obj/
 
 SRCS := ft_strlen.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
 		ft_write.s \
 		ft_read.s \
-		ft_strdup.s
+		ft_strdup.s \
+		ft_atoi_base.s
 
-OBJS := $(SRCS:.s=.o)
+OBJS := $(addprefix $(OBJ_DIR), $(SRCS:.s=.o))
 
 AS := nasm
 ASFLAGS := -f elf64 -g -F dwarf
-
-CC := gcc 
-
-CFLAGS :=  -Wall -Werror -Wextra -g
 
 all: $(NAME)
 
 bonus: all
 
-$(NAME): $(OBJS)
+tester: all
+	make -C $(TESTER_DIR)
+
+$(NAME): $(OBJ_DIR) $(OBJS)
 	ar -rcs $@ $(OBJS)
 
-%.o: %.s
-	$(AS) $(ASFLAGS) $<
+$(OBJ_DIR)%.o: %.s
+	$(AS) $(ASFLAGS) $< -o $@
 
-tester: all $(TESTER_NAME)
-	$(CC) $(CFLAGS)  $(TESTER_NAME) -o $@ -L. -lasm -L. -lasm
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
 
 clean:
 	rm -rf $(OBJS)
-	rm -rf libasm_tester.o
+	rm -fd $(OBJ_DIR)
+	make -C $(TESTER_DIR) clean
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf libasm_tester
+	make -C $(TESTER_DIR) fclean
 
 re:	clean
-	$(MAKE) all
+	make all
 
 test:	tester
-		./tester
+		./$(TESTER_DIR)$(TESTER_NAME)
 
 vtest:	tester
-		valgrind ./tester
+		valgrind ./$(TESTER_DIR)$(TESTER_NAME)
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, bonus, clean, fclean, re, tester
