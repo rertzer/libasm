@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:39:13 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 11:03:51 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/29 16:05:21 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ ssize_t	ft_read(int fd, const void *buf, size_t count);
 char	*ft_strdup(const char *src);
 //bonus functions
 int		ft_atoi_base(char *str, char *base);
-
+void	ft_list_push_front(t_list **begin_list, void *data);
+int		ft_list_size(t_list *begin_list);
+void	ft_list_sort(t_list **begin_list, int (*cmp)());
 #endif

@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:53:25 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 12:59:28 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/29 15:56:17 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,3 @@ void	piscine_list_sort(t_list **begin_list, int (*cmp)())
 		}
 	}
 }
-
-/*int	main(void)
-{
-	int	size;
-	void	*data;
-	char	tab1[] = "Lollipopp";
-	char	tab2[] = "HipHipHip";
-	char	tab3[] = "HopHopHop";
-	char	tab4[] = "Houlahoop";
-	char	*tabA[] = {tab1, tab2, tab3, tab4};
-	t_list	*thelist;
-	//t_list	*otherlist;
-	t_list	*elem;
-
-	thelist = ft_list_push_strs(4, tabA);
-	//otherlist = ft_list_push_strs(2, tabB);
-
-	elem = thelist;
-	while (elem)
-	{
-		write(1, elem->data, 9);
-		write(1, "\n", 1);
-		elem = elem->next;
-	}
-	write(1, "\n\n", 1);
-	ft_list_sort(&thelist, &ft_strcmp);
-	elem = thelist;
-	while (elem)
-	{
-		write(1, elem->data, 9);
-		write(1, "\n", 1);
-		elem = elem->next;
-	}
-
-	ft_list_clear(thelist, &ft_free_data);
-	return (0);
-}*/

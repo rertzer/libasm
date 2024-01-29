@@ -6,11 +6,11 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:50:59 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 12:02:48 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:36:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libasm_tester.c"
+#include "libasm_tester.h"
 
 static t_list	*piscine_list_prev(t_list *lst, t_list *target)
 {
@@ -45,7 +45,7 @@ static t_list	*piscine_list_remove(t_list **begin_list, t_list *elem, void (*fre
 }
 	
 
-static void	piscine_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
+void	piscine_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
 {
 	t_list	*current;
 

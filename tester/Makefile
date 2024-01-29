@@ -10,12 +10,15 @@ SRCS := libasm_tester.c \
 		strdup_tester.c \
 		strlen_tester.c \
 		atoi_base_tester.c \
+		push_front_tester.c \
+		list_size_tester.c \
+		list_sort_tester.c \
 		piscine_atoi_base.c \
 		piscine_create_element.c \
 		piscine_list_push_front.c \
 		piscine_list_size.c \
 		piscine_list_sort.c \
-		#piscine_list_remove_if.c
+		piscine_list_remove_if.c
 
 INCS := ../libasm.h \
 		libasm_tester.h

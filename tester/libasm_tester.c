@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:59:17 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 11:07:04 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/29 15:58:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	str_compare(const char *std, const char *ft)
 
 int	main()
 {
-	//char	test_string_1[] = "coucou";
-	//char	test_string_2[] = "";
+	/*char	test_string_1[] = "coucou";
+	char	test_string_2[] = "";
 	char	atoi_string_1[] = "1234";
 	char	atoi_string_2[] = "9876543210";
 	char	atoi_string_3[] = "lapinnappllinap";
@@ -62,7 +62,8 @@ int	main()
 	char	atoi_base_ten[] = "0123456789";
 	char	atoi_base_two[] = "01";
 	char	atoi_base_hex[] = "0123456789abcdef";
-	char	atoi_base_lapin[] = "lapin";
+	char	atoi_base_lapin[] = "lapin";*/
+
 	//char	test_string_3[] = "Loin des oiseaux, des troupeaux, des villageoises,\nJe buvais a genoux dans quelque bruyere\nEntouree de tendres bois de noisetiers,\nPar un brouillard d'apres-midi tiede et vert.\n";
 	/*char	test_string_4[] = "coukou";
 	char	*test_string_bigA = malloc(BIG_SIZE + 1);
@@ -136,7 +137,7 @@ int	main()
 	strdup_tester(test_string_2);
 	strdup_tester(test_string_3);
 	strdup_tester(test_string_bigA);
-*/
+
 
 	printf("\033[0;33m       ====================== BONUS =================\033[0m\n");
 	printf("\033[0;33m       ==================== ATOI BASE ===============\033[0m\n");
@@ -154,7 +155,30 @@ int	main()
 	atoi_base_tester(atoi_string_7, atoi_base_hex);
 	atoi_base_tester(atoi_string_9, atoi_base_two);
 	atoi_base_tester(atoi_string_10, atoi_base_ten);
-	atoi_base_tester(atoi_string_11, atoi_base_ten);
+	atoi_base_tester(atoi_string_11, atoi_base_ten);*/
+
+	printf("\033[0;33m       ================= FT_LIST_PUSH_FRONT ===========\033[0m\n");
+
+	t_list	*ref_list = NULL;
+	t_list	*asm_list = NULL;
+	push_front_tester(&ref_list, &asm_list);
+
+	printf("\033[0;33m       ================= FT_LIST_SIZE ===========\033[0m\n");
+
+	list_sort_tester(&ref_list, &asm_list);
+
+	piscine_list_clear(ref_list, &piscine_free_data);
+	piscine_list_clear(asm_list, &piscine_free_data);
+
+	ref_list = NULL;
+	asm_list = NULL;
+
+	printf("\033[0;33m       ================= FT_LIST_SIZE ===========\033[0m\n");
+	list_size_tester(ref_list);
+
+
+
+	
 //	free(test_string_bigA);
 //	free(buffer);
 	return 0;

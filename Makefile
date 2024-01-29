@@ -12,7 +12,10 @@ SRCS := ft_strlen.s \
 		ft_write.s \
 		ft_read.s \
 		ft_strdup.s \
-		ft_atoi_base.s
+		ft_atoi_base.s \
+		ft_list_push_front.s \
+		ft_list_size.s \
+		ft_list_sort.s
 
 OBJS := $(addprefix $(OBJ_DIR), $(SRCS:.s=.o))
 
