@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:35:15 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 15:57:19 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/03 12:23:24 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
 #include "../libasm.h"
 
-#define	BIG_SIZE 42000
-
+#define	BIG_SIZE 12000
 //tester functions
 void	strlen_tester(const char *s);
 int		strcpy_tester(const char *s);
 void	strcmp_tester(const char *s1, const char *s2);
 void	write_tester(int fd, const char *s1);
 void	read_tester(int fd, char *s1, const size_t len);
+int		read_file_tester(char *s1, const size_t len);
 int		strdup_tester(const char *s);
 void	atoi_base_tester(char *string, char *base);
-void	push_front_tester(t_list **ref_list, t_list **asm_list);
-void	list_size_tester(t_list *ref_list);
+void	push_front_tester(t_list **ref_list, t_list **asm_list, char **data);
+void	list_size_tester(t_list **ref_list);
 void	list_sort_tester(t_list **ref_list, t_list **asm_list);
+void	remove_if_tester(t_list **ref_list, t_list **asm_list, char *data);
 //tester helper functions
 void	li_compare(long int std, long int ft);
 void	str_compare(const char *std, const char *ft);

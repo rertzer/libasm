@@ -1,4 +1,7 @@
 *.o
 *.a
 *.swp
-
+random.txt
+.gdb_history
+.gdbinit
+peda-session-libasm_tester.txt

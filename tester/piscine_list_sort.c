@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:53:25 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 15:56:17 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/01/31 12:01:52 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	piscine_list_sort(t_list **begin_list, int (*cmp)())
 	{
 		sorted = 1;
 		elem = *begin_list;
-		while (elem->next)
+		while (elem && elem->next)
 		{
 			if (cmp(elem->data, elem->next->data) > 0)
 			{
@@ -61,3 +61,4 @@ void	piscine_list_sort(t_list **begin_list, int (*cmp)())
 		}
 	}
 }
+

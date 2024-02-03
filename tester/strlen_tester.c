@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:04:31 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 11:04:59 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/03 11:27:49 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	strlen_tester(const char *s)
 {
+	printf("\033[0;35m       ---------------------------------------------\033[0m\n");
 	printf("Testing ft_strlen\n");
 
 	long int	len_std = strlen(s);

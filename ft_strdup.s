@@ -40,15 +40,15 @@ _strlen_found:
 	cmp rcx, 0				; if empty, skip the loop
 	je _empty_string
 _duploop:
-	mov rdi, [rsi]			;src[n] put in rdi
-	mov [rdx], rdi			;src[n] put in dest[n]
+	mov byte dil, [rsi]			;src[n] put in dil (rdi lower part)
+	mov byte [rdx], dil			;src[n] put in dest[n] (dl : rdx lower part)
 	inc rdx
 	inc rsi
 	loop _duploop
 
 _empty_string:
 	xor rdi, rdi			;adding the '\0'
-	mov [rdx], rdi
+	mov byte [rdx], dil		;dil: rdi lower part
 	ret
 
 ;errno

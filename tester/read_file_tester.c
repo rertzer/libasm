@@ -1,31 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_tester.c                                     :+:      :+:    :+:   */
+/*   read_file_tester.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 11:07:23 by rertzer           #+#    #+#             */
-/*   Updated: 2024/02/03 12:09:47 by rertzer          ###   ########.fr       */
+/*   Created: 2024/02/03 12:17:30 by rertzer           #+#    #+#             */
+/*   Updated: 2024/02/03 12:26:50 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libasm_tester.h"
 
-void	write_tester(int fd, const char *s1)
+int	read_file_tester(char *s1, const size_t len)
 {
 	printf("\033[0;35m       ---------------------------------------------\033[0m\n");
-	long int	len = strlen(s1);
-	printf("Testing ft_write on fd %d\n", fd);
+	printf("Testing read on random.txt, bffer size: %ld\n", len);
 
-	printf("std:\n");
+	int fd = open("random.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("open random.txt failed. Quitting...\n");
+		return 1;
+	}
+
+	bzero((void*)s1, len);
 	errno = 0;
-	long int ret = write(fd, s1, len);
+	long int ret = read(fd, s1, len);
 	printf("\nstd return value: %ld\nstd errno: %d\n", ret, errno);
+	printf("buffer contain: %s\n", s1);
+	close (fd);
+	fd = open("random.txt", O_RDONLY);
+	if (fd == -1)
+	{
+		printf("open random.txt failed. Quitting...\n");
+		return 1;
+	}
 
-	printf("\nft:\n");
+	bzero((void*)s1, len);
 	errno = 0;
-	ret = ft_write(fd, s1, len);
+	ret = ft_read(fd, s1, len);
 	printf("\nft return value: %ld\nft errno: %d\n\n", ret, errno);
+	printf("buffer contain: %s\n\n", s1);
+	bzero((void*)s1, len);
+	close(fd);
+	return 0;
 }
 

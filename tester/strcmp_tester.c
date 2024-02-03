@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:06:30 by rertzer           #+#    #+#             */
-/*   Updated: 2024/01/29 11:06:44 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/03 11:27:57 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	strcmp_tester(const char *s1, const char *s2)
 {
+	printf("\033[0;35m       ---------------------------------------------\033[0m\n");
 	long int	len = strlen(s1);
 	printf("Testing ft_strcmp\n");
 	if (len < 1024)
