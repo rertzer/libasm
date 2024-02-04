@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:06:30 by rertzer           #+#    #+#             */
-/*   Updated: 2024/02/03 11:27:57 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/04 09:54:27 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	strcmp_tester(const char *s1, const char *s2)
 		printf("(s2 len: %ld)\n", len);
 	int	std = strcmp(s1, s2);
 	int	ft = ft_strcmp(s1, s2);
-	li_compare(std, ft);
+	sign_compare(std, ft);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 14:59:17 by rertzer           #+#    #+#             */
-/*   Updated: 2024/02/03 12:42:15 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/04 10:01:21 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ void	li_compare(long int std, long int ft)
 	else
 		printf("\033[0;32m\tOK\033[0m\n\n");
 }
+
+void	sign_compare(int std, int ft)
+{
+	printf("ref:    %d\n", std);
+	printf("libasm: %d\n", ft);
+
+	if (std == ft || (std > 0 && ft > 0) || (std < 0 && ft < 0))
+		printf("\033[0;32m\tOK\033[0m\n\n");
+	else
+		printf("\033[0;31m\tKO\033[0m\n\n");
+}
+
 
 void	str_compare(const char *std, const char *ft)
 {

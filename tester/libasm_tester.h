@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 10:35:15 by rertzer           #+#    #+#             */
-/*   Updated: 2024/02/03 12:23:24 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/04 09:55:37 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	list_sort_tester(t_list **ref_list, t_list **asm_list);
 void	remove_if_tester(t_list **ref_list, t_list **asm_list, char *data);
 //tester helper functions
 void	li_compare(long int std, long int ft);
+void	sign_compare(int std, int ft);
 void	str_compare(const char *std, const char *ft);
 //piscine reference functions
 void	piscine_list_clear(t_list *begin_list, void (*free_fct)(void *));
