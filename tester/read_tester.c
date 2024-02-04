@@ -6,7 +6,7 @@
 /*   By: rertzer <rertzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 11:07:57 by rertzer           #+#    #+#             */
-/*   Updated: 2024/02/03 12:10:48 by rertzer          ###   ########.fr       */
+/*   Updated: 2024/02/04 15:53:41 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	read_tester(int fd, char *s1, const size_t len)
 {
 	printf("\033[0;35m       ---------------------------------------------\033[0m\n");
-	printf("Testing read on fd %d, bffer size: %ld\n", fd, len);
+	printf("Testing read on fd %d, buffer size: %ld\n", fd, len);
 	
 	printf("\nstd, your entry:\n");
 	bzero((void*)s1, len);
